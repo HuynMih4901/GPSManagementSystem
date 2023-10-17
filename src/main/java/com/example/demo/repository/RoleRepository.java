@@ -12,5 +12,5 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
 
   Optional<Role> findByCode(String code);
 
-  Set<Role> findAllByCodeIn(Set<RoleEnum> codes);
+  Set<Role> findAllByCodeIn(Set<String> roles);
 }

@@ -11,5 +11,5 @@ public interface UserService {
 
   UserResponseDTO login(UserLoginRequestDTO dto);
 
-  User getUserInfo();
+  User getUser(int id);
 }

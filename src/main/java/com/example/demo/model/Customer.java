@@ -1,15 +1,14 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -32,6 +31,10 @@ public class Customer {
 
   @Column(name = "address_detail", nullable = false)
   private String addressDetail;
+
+  @Column(name = "customerIndex")
+  @JsonIgnore
+  private Integer customerIndex;
 
   @ManyToOne
   @JoinColumn(name = "ward_code", referencedColumnName = "code")
