@@ -3,14 +3,11 @@ package com.example.demo.dto.user;
 import java.util.Set;
 
 import com.example.demo.model.Role;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class UserResponseDTO {
 
   private final String type = "Bearer";
