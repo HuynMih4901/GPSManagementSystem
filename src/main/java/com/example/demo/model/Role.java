@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "sims")
-public class Sim {
+@Table(name = "roles")
+public class Role {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +23,10 @@ public class Sim {
   @Column(name = "code", nullable = false, unique = true)
   private String code;
 
-  @Column(name = "phone", nullable = false)
-  private String phone;
+  @Column(name = "name", nullable = false)
+  private String name;
 
-  @Column(name = "price")
-  private Double price;
-
-  @ManyToOne
-  @JoinColumn(name = "order_code", referencedColumnName = "code")
-  private Order order;
-
-  @ManyToOne
-  @JoinColumn(name = "provider_code", referencedColumnName = "code")
-  private Provider provider;
+  @ManyToMany(mappedBy = "roles")
+  @JsonIgnore
+  private Set<User> users;
 }

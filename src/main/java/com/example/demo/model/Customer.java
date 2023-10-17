@@ -11,8 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "sims")
-public class Sim {
+@Table(name = "customers")
+public class Customer {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +21,19 @@ public class Sim {
   @Column(name = "code", nullable = false, unique = true)
   private String code;
 
+  @Column(name = "name", nullable = false)
+  private String name;
+
   @Column(name = "phone", nullable = false)
   private String phone;
 
-  @Column(name = "price")
-  private Double price;
+  @Column(name = "email", nullable = false)
+  private String email;
+
+  @Column(name = "address_detail", nullable = false)
+  private String addressDetail;
 
   @ManyToOne
-  @JoinColumn(name = "order_code", referencedColumnName = "code")
-  private Order order;
-
-  @ManyToOne
-  @JoinColumn(name = "provider_code", referencedColumnName = "code")
-  private Provider provider;
+  @JoinColumn(name = "ward_code", referencedColumnName = "code")
+  private Ward ward;
 }
