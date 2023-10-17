@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "sims")
-public class Sim {
+@Table(name = "adminitrators")
+public class Adminitrator {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +22,22 @@ public class Sim {
   @Column(name = "code", nullable = false, unique = true)
   private String code;
 
+  @Column(name = "name", nullable = false)
+  private String name;
+
   @Column(name = "phone", nullable = false)
   private String phone;
 
-  @Column(name = "price")
-  private Double price;
+  @Column(name = "email", nullable = false)
+  private String email;
+
+  @Column(name = "address_detail")
+  private String addressDetail;
 
   @ManyToOne
-  @JoinColumn(name = "order_code", referencedColumnName = "code")
-  private Order order;
+  @JoinColumn(name = "ward_code", referencedColumnName = "code")
+  private Ward ward;
 
-  @ManyToOne
-  @JoinColumn(name = "provider_code", referencedColumnName = "code")
-  private Provider provider;
+  @OneToMany(mappedBy = "adminitrator",fetch = FetchType.LAZY)
+  private List<Order> orders;
 }

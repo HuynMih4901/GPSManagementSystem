@@ -6,13 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "sims")
-public class Sim {
+@Table(name = "provinces")
+public class Province {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +23,12 @@ public class Sim {
   @Column(name = "code", nullable = false, unique = true)
   private String code;
 
-  @Column(name = "phone", nullable = false)
-  private String phone;
+  @Column(name = "name", nullable = false)
+  private String name;
 
-  @Column(name = "price")
-  private Double price;
+  @Column(name = "country_code", nullable = false)
+  private String countryCode;
 
-  @ManyToOne
-  @JoinColumn(name = "order_code", referencedColumnName = "code")
-  private Order order;
-
-  @ManyToOne
-  @JoinColumn(name = "provider_code", referencedColumnName = "code")
-  private Provider provider;
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "province")
+  private List<District> districts;
 }
