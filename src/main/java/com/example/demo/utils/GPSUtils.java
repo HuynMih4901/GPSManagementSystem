@@ -1,11 +1,11 @@
 package com.example.demo.utils;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.lang3.StringUtils;
 
 public class GPSUtils {
 
@@ -35,5 +35,12 @@ public class GPSUtils {
     } catch (NoSuchAlgorithmException | InvalidKeyException e) {
       return null;
     }
+  }
+
+  public static String appendLikeExpression(String value) {
+    if (StringUtils.isBlank(value)) {
+      return null;
+    }
+    return String.format("%%%s%%", StringUtils.trim(value.toLowerCase()));
   }
 }

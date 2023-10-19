@@ -32,7 +32,7 @@ public class Order {
   @Column(name = "quantity")
   private Integer quantity;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "admin_code", referencedColumnName = "code")
   private Adminitrator adminitrator;
 

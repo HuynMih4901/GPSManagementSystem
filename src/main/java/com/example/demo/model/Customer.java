@@ -36,7 +36,7 @@ public class Customer {
   @JsonIgnore
   private Integer customerIndex;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "ward_code", referencedColumnName = "code")
   private Ward ward;
 }

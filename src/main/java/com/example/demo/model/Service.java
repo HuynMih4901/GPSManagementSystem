@@ -30,7 +30,7 @@ public class Service {
   @Column(name = "total_price")
   private Double totalPrice;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "type_service_code", referencedColumnName = "code")
   private TypeService typeService;
 

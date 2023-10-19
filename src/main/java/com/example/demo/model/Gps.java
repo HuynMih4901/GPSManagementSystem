@@ -31,11 +31,11 @@ public class Gps {
   @Column(name = "expiredDate")
   private LocalDate expiredDate;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "service_code", referencedColumnName = "code")
   private Service service;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "type_device_code", referencedColumnName = "code")
   private TypeDevice typeDevice;
 }

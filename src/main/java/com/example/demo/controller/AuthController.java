@@ -26,7 +26,7 @@ public class AuthController {
   private final UserService userService;
 
   @PostMapping("/sign-up")
-  @Operation(summary = "Đăng ký tài khoản cho khách hàng")
+  @Operation(summary = "ADMIN - Đăng ký tài khoản cho khách hàng")
   @ApiResponse(responseCode = "201", description = "Tài khoản được đăng ký thành công")
   public ResponseEntity<?> signUp(
       @RequestHeader(HttpHeaders.AUTHORIZATION) String token,
