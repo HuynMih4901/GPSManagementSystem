@@ -16,6 +16,7 @@ public class ExceptionUtils {
   public static final String E_PHONE_EXISTED = "E_PHONE_EXISTED";
   public static final String E_ADDRESS_ERROR = "E_ADDRESS_ERROR";
   public static final String E_NOT_AUTHORIZE = "E_NOT_AUTHORIZE";
+  public static final String E_RECORD_EXIST = "E_RECORD_EXIST";
 
   public static final Map<String, String> MESSAGES = new HashMap<>();
 
@@ -31,6 +32,7 @@ public class ExceptionUtils {
     MESSAGES.put(E_PHONE_EXISTED, "Số điện thoại đã tồn tại");
     MESSAGES.put(E_ADDRESS_ERROR, "Lỗi địa chỉ");
     MESSAGES.put(E_NOT_AUTHORIZE, "Không có quyền truy cập");
+    MESSAGES.put(E_RECORD_EXIST, "Bản ghi bị trùng");
   }
 
 

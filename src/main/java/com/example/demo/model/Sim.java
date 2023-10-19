@@ -27,11 +27,11 @@ public class Sim {
   @Column(name = "price")
   private Double price;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "order_code", referencedColumnName = "code")
   private Order order;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "provider_code", referencedColumnName = "code")
   private Provider provider;
 }

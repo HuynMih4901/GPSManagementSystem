@@ -34,7 +34,7 @@ public class Adminitrator {
   @Column(name = "address_detail")
   private String addressDetail;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "ward_code", referencedColumnName = "code")
   private Ward ward;
 

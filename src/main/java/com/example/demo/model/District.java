@@ -26,7 +26,7 @@ public class District {
   @Column(name = "name", nullable = false)
   private String name;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "province_code", referencedColumnName = "code")
   private Province province;
 
