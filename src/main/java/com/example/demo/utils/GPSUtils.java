@@ -1,8 +1,10 @@
 package com.example.demo.utils;
 
+import jakarta.persistence.Query;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.lang3.StringUtils;
@@ -13,6 +15,7 @@ public class GPSUtils {
     throw new IllegalStateException("Utils class");
   }
 
+  // tạo code
   public static String generateCode(String type, int index) {
     return type + String.format("%05d", index);
   }
@@ -42,5 +45,11 @@ public class GPSUtils {
       return null;
     }
     return String.format("%%%s%%", StringUtils.trim(value.toLowerCase()));
+  }
+
+  public static void setQueryParameters(Map<String, Object> queryParams, Query query) {
+    if (!queryParams.isEmpty()) {
+      queryParams.forEach(query::setParameter);
+    }
   }
 }

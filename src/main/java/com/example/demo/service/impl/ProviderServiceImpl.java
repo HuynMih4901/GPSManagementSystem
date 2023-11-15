@@ -10,11 +10,10 @@ import com.example.demo.model.Provider;
 import com.example.demo.repository.ProviderRepository;
 import com.example.demo.service.ProviderService;
 import com.example.demo.utils.GPSUtils;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -80,5 +79,12 @@ public class ProviderServiceImpl implements ProviderService {
     request.setName(name);
     request.setCode(code);
     return providerRepository.find(request);
+  }
+
+  @Override
+  public Provider getProviderByCode(String providerCode) {
+    return providerRepository
+        .findByCode(providerCode)
+        .orElseThrow(() -> new GPSException(ExceptionUtils.E_RECORD_NOT_EXIST));
   }
 }
