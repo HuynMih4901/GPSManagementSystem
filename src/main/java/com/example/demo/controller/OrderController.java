@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.order.OrderCreateBodyDTO;
 import com.example.demo.dto.order.OrderSearchParamDTO;
+import com.example.demo.model.Order;
 import com.example.demo.security.SecurityUtils;
 import com.example.demo.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,6 +38,18 @@ public class OrderController {
     SecurityUtils.validateToken(token, SecurityUtils.ADMINS);
     orderService.create(request);
     return ResponseEntity.status(HttpStatus.CREATED).build();
+  }
+
+  @GetMapping("/{orderCode}")
+  @Operation(summary = "ADMIN - Chi tiết Order")
+  @ApiResponse(
+      responseCode = "200",
+      description = "Lấy thành công",
+      content = @Content(schema = @Schema(implementation = Order.class)))
+  public ResponseEntity<?> getSimBySimCode(
+      @RequestHeader(HttpHeaders.AUTHORIZATION) String token, @PathVariable String orderCode) {
+    SecurityUtils.validateToken(token, SecurityUtils.ADMINS);
+    return ResponseEntity.ok(orderService.getOrderByOrderCode(orderCode));
   }
 
   @GetMapping
