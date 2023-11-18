@@ -11,4 +11,9 @@ public interface SimRepository extends JpaRepository<Sim, Integer> {
   Integer findMaxId();
 
   Optional<Sim> findByCode(String simCode);
+
+  @Query(value = """
+select count(*) from Sim s
+""")
+  Integer getAllSims();
 }

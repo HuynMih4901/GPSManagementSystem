@@ -64,14 +64,20 @@ public class UserServcieImpl implements UserService {
   @Override
   public UserResponseDTO login(UserLoginRequestDTO request) {
     String encodePassword = GPSUtils.encodePassword(request.getPassword(), request.getUsername());
-    Optional<User> userOptional =
-        userRepository.findByUsernameAndPassword(request.getUsername(), encodePassword);
-    if (userOptional.isEmpty()) {
-      throw new GPSException(ExceptionUtils.E_USERNAME_PASSWORD_NOT_VALID);
+    User user =
+        userRepository
+            .findByUsernameAndPassword(request.getUsername(), encodePassword)
+            .orElseThrow(() -> new GPSException(ExceptionUtils.E_USERNAME_PASSWORD_NOT_VALID));
+
+    String accessToken = SecurityUtils.generateToken(user);
+    Set<Role> roles = user.getRoles();
+    String userCode = null;
+    if (user.getAdminitrator() == null) {
+      userCode = user.getCustomer().getCode();
+    } else {
+      userCode = user.getAdminitrator().getCode();
     }
-    String accessToken = SecurityUtils.generateToken(userOptional.get());
-    Set<Role> roles = userOptional.get().getRoles();
-    return new UserResponseDTO(accessToken, request.getUsername(), roles);
+    return new UserResponseDTO(accessToken, request.getUsername(), roles, userCode);
   }
 
   @Override
