@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.order.OrderCreateBodyDTO;
+import com.example.demo.dto.order.OrderPageResponseDTO;
 import com.example.demo.dto.order.OrderSearchParamDTO;
 import com.example.demo.model.Order;
 import com.example.demo.security.SecurityUtils;
@@ -59,7 +60,7 @@ public class OrderController {
       description = "Lấy thành công",
       content =
           @Content(
-              array = @ArraySchema(schema = @Schema(implementation = OrderSearchParamDTO.class))))
+              array = @ArraySchema(schema = @Schema(implementation = OrderPageResponseDTO.class))))
   @PageableAsQueryParam
   public ResponseEntity<?> find(
       @RequestHeader(HttpHeaders.AUTHORIZATION) String token,

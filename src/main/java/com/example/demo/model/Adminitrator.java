@@ -38,6 +38,6 @@ public class Adminitrator {
   @JoinColumn(name = "ward_code", referencedColumnName = "code")
   private Ward ward;
 
-  @OneToMany(mappedBy = "adminitrator",fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "adminitrator", fetch = FetchType.LAZY)
   private List<Order> orders;
 }

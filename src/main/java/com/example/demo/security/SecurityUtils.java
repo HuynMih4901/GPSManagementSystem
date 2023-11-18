@@ -24,7 +24,8 @@ public class SecurityUtils {
   // Role của quản lý, super admin
   public static final Set<String> ADMINS = Set.of(RoleEnum.ADMIN.getCode());
   // Role của khách hàng
-  public static final Set<String> CUSTOMERS = Set.of(RoleEnum.CUS.getCode());
+  public static final Set<String> CUSTOMERS =
+      Set.of(RoleEnum.CUS.getCode(), RoleEnum.ADMIN.getCode());
 
   private static final long EXPIRE_DURATION_1_HOUR = 60 * 60 * 1000;
   private static final String JWT_SECRET = "abcdefghijklmnpqrstuvwyz1234567890";
