@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: tungbq
+    url: jdbc:mysql://mysql.sful.vn:3306/projecthuyen
+    password: P@55w0rd
+  jpa:
+    generate-ddl: 'true'
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+      time: HH:mm:ss
+springdoc:
+  swagger-ui:
+    tagsSorter: alpha
