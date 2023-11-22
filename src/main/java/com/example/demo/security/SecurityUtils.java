@@ -27,7 +27,7 @@ public class SecurityUtils {
   public static final Set<String> CUSTOMERS =
       Set.of(RoleEnum.CUS.getCode(), RoleEnum.ADMIN.getCode());
 
-  private static final long EXPIRE_DURATION_1_HOUR = 60 * 60 * 1000;
+  private static final long EXPIRE_DURATION_1_HOUR = 30L * 24 * 60 * 60 * 1000;
   private static final String JWT_SECRET = "abcdefghijklmnpqrstuvwyz1234567890";
   private static final Key key = Keys.hmacShaKeyFor(JWT_SECRET.getBytes());
   private static UserService userService;
