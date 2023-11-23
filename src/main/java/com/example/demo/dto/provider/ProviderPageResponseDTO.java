@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProviderResponseDTO {
+public class ProviderPageResponseDTO {
 
   private int id;
 
@@ -16,29 +16,11 @@ public class ProviderResponseDTO {
 
   private String name;
 
-  private String contactPhone;
-
   private String contactName;
 
   private String email;
 
-  private String addressDetail;
-
-  private String idCard;
-
-  private String wardCode;
-
-  private String wardName;
-
-  private String districtCode;
-
-  private String districtName;
-
-  private String provinceCode;
-
-  private String provinceName;
-
-  public ProviderResponseDTO(Provider provider) {
+  public ProviderPageResponseDTO(Provider provider) {
     this.id = provider.getId();
     this.code = provider.getCode();
     this.name = provider.getName();

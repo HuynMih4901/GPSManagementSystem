@@ -13,7 +13,7 @@ public interface SimService {
 
   void update();
 
-  void delete();
+  void delete(int simId);
 
   void find();
 
