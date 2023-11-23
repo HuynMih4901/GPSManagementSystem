@@ -1,13 +1,12 @@
 package com.example.demo.repository;
 
-import com.example.demo.dto.provider.ProviderResponseDTO;
+import com.example.demo.dto.provider.ProviderPageResponseDTO;
 import com.example.demo.dto.provider.ProviderSearchParamDTO;
 import com.example.demo.model.Provider;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface ProviderRepository extends JpaRepository<Provider, Integer> {
 
@@ -23,10 +22,10 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
   @Query(
       value =
           """
-select new com.example.demo.dto.provider.ProviderResponseDTO(p)
+select new com.example.demo.dto.provider.ProviderPageResponseDTO(p)
 from Provider p
 where (:#{#request.code} is null or lower(p.code) like :#{#request.code})
 and (:#{#request.name} is null or lower(p.name) like :#{#request.name})
 """)
-  List<ProviderResponseDTO> find(ProviderSearchParamDTO request);
+  List<ProviderPageResponseDTO> find(ProviderSearchParamDTO request);
 }

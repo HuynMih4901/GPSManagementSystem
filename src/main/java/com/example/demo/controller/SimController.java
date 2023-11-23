@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,5 +54,15 @@ public class SimController {
       @Parameter(hidden = true) Pageable pageable) {
     SecurityUtils.validateToken(token, SecurityUtils.ADMINS);
     return ResponseEntity.ok(simService.findSims(request, pageable));
+  }
+
+  @DeleteMapping("/{simId}")
+  @Operation(summary = "ADMIN - Xóa SIM")
+  @ApiResponse(responseCode = "204", description = "Xóa thành công")
+  public ResponseEntity<?> delete(
+      @RequestHeader(HttpHeaders.AUTHORIZATION) String token, @PathVariable int simId) {
+    SecurityUtils.validateToken(token, SecurityUtils.ADMINS);
+    simService.delete(simId);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 }

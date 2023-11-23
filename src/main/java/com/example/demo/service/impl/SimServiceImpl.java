@@ -51,7 +51,13 @@ public class SimServiceImpl implements SimService {
   public void update() {}
 
   @Override
-  public void delete() {}
+  public void delete(int simId) {
+    Sim sim =
+        simRepository
+            .findById(simId)
+            .orElseThrow(() -> new GPSException(ExceptionUtils.E_RECORD_NOT_EXIST));
+    simRepository.delete(sim);
+  }
 
   @Override
   public void find() {}
